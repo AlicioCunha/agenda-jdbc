@@ -62,12 +62,27 @@ public class UsuarioDAO {
             statement.setString(1, nomeUsuario);
             statement.setLong(2, idUsuario);
             statement.executeUpdate();
-            
+
             this.conexao.commit();
         } catch (SQLException exception) {
             this.conexao.rollback();
             throw exception;
         }
 
+    }
+
+    public void excluir(Long idUsuario) throws SQLException, ClassNotFoundException {
+        String sqlQuery = "DELETE FROM usuario WHERE id = ?";
+
+        try {
+            PreparedStatement statement = this.conexao.getConnection().prepareStatement(sqlQuery);
+            statement.setLong(1, idUsuario);
+            statement.executeUpdate();
+
+            this.conexao.commit();
+        } catch (SQLException exception) {
+            this.conexao.rollback();
+            throw exception;
+        }
     }
 }
