@@ -53,4 +53,21 @@ public class UsuarioDAO {
             throw exception;
         }
     }
+
+    public void alterar(String nomeUsuario, Long idUsuario) throws SQLException, ClassNotFoundException {
+        String sqlQuery = "UPDATE usuario SET nome = ? where id ?";
+        try {
+
+            PreparedStatement statement = this.conexao.getConnection().prepareStatement(sqlQuery);
+            statement.setString(1, nomeUsuario);
+            statement.setLong(2, idUsuario);
+            statement.executeUpdate();
+            
+            this.conexao.commit();
+        } catch (SQLException exception) {
+            this.conexao.rollback();
+            throw exception;
+        }
+
+    }
 }
