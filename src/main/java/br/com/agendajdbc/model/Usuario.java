@@ -1,2 +1,4 @@
-package br.com.agendajdbc.model;public class Usuario {
+package br.com.agendajdbc.model;
+
+public class Usuario {
 }
